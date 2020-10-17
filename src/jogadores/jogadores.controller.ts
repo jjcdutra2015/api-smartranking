@@ -3,7 +3,7 @@ import { AtualizarJogadorDto } from './dtos/atualizar-jogador.dto';
 import { CriarJogadorDto } from './dtos/criar-jogador.dto';
 import { Jogador } from './intefaces/jogador.interface';
 import { JogadoresService } from './jogadores.service';
-import { ValidacaoParametrosPipe } from '../common/filters/validacao-parametros.pipe'
+import { ValidacaoParametrosPipe } from '../common/pipes/validacao-parametros.pipe'
 
 @Controller('api/v1/jogadores')
 export class JogadoresController {

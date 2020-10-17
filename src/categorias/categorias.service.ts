@@ -38,6 +38,18 @@ export class CategoriasService {
         return categoriaEncontrada
     }
 
+    async consultarCategoriaDoJogador(idJogador: any): Promise<Categoria> {
+        const jogadores = await this.jogadoresService.consultarTodosJogadores()
+
+        const jogadorFilter = jogadores.filter(jogador => jogador._id == idJogador)
+
+        if (jogadorFilter.length == 0) {
+            throw new BadRequestException(`O id ${idJogador} não é um jogador`)
+        }
+
+        return await this.categoriaModel.findOne().where('jogadores').in(idJogador).exec()
+    }
+
     async atualizarCategoria(categoria: string, atualizarCategoriaDto: AtualizarCategoriaDto): Promise<void> {
         const categoriaEncontrada = await this.categoriaModel.findOne({ categoria }).exec()
 
@@ -61,7 +73,7 @@ export class CategoriasService {
             throw new BadRequestException(`Categoria ${categoria} não cadastrada`)
         }
 
-        if (jogadorCadastradoCategoria) {
+        if (jogadorCadastradoCategoria.length > 0) {
             throw new BadRequestException(`Jogador ${idJogador} já cadastrado na Categoria ${categoria}`)
         }
 

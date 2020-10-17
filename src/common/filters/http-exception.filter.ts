@@ -18,7 +18,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         this.logger.error(`Http Status: ${status} Error Message: ${JSON.stringify(message)}`)
 
         response.status(status).json({
-            timestamp: new Date(),
+            timestamp: new Date().toISOString(),
             path: request.url,
             error: message
         })
