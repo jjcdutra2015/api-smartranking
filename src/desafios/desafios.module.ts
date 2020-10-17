@@ -5,9 +5,11 @@ import { JogadoresModule } from 'src/jogadores/jogadores.module';
 import { DesafiosController } from './desafios.controller';
 import { DesafiosService } from './desafios.service';
 import { DesafioSchema } from './interface/desafio.schema';
+import { PartidaSchema } from './interface/partida.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Desafio', schema: DesafioSchema }]), JogadoresModule, CategoriasModule],
+  imports: [MongooseModule.forFeature([{ name: 'Desafio', schema: DesafioSchema }, { name: 'Partida', schema: PartidaSchema }]),
+            JogadoresModule, CategoriasModule],
   controllers: [DesafiosController],
   providers: [DesafiosService]
 })

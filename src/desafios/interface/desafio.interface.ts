@@ -15,9 +15,9 @@ export interface Desafio extends Document {
 
 export interface Partida extends Document {
     categoria: string;
+    jogadores: Array<Jogador>;
     def: Jogador;
     resultado: Array<Resultado>;
-    jogadores: Array<Jogador>;
 }
 
 export interface Resultado {
